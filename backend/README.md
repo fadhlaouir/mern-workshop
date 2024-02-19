@@ -24,7 +24,7 @@ Make sure to replace `<your-mongodb-uri>` with the URI for your MongoDB database
 Finally, start the application by running:
 
 ```
-npm start
+npm run develop
 ```
 
 The application should now be running on the specified port number. You can access it in your web browser by navigating to `http://localhost:<your-port-number>`.
@@ -33,7 +33,7 @@ The application should now be running on the specified port number. You can acce
 
 The following API endpoints are available:
 
-GET `/api/v1/workshops` - Get all workshops
+GET `/api/v1/workshop` - Get all workshops
 
 GET `/api/v1/workshop/:id` - Get a workshop by ID
 
