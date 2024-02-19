@@ -57,4 +57,4 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## Acknowledgments
 
-This workshop was created to help developers learn how to build a CRUD application using MongoDB, Express, and Node.js. Special thanks to the workshop organizers and instructors for their guidance and support.
+This workshop was created to help ISET KAIROUAN Students learn how to build a CRUD application using MongoDB, Express, and Node.js. 
