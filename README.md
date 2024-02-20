@@ -1,4 +1,4 @@
-### Introduction to Web Development with MERN Stack - 3 Day Training
+# Introduction to Web Development with MERN Stack - 3 Day Training
 
 Welcome to the Introduction to Web Development with MERN Stack training program! In this three-day workshop, you will learn the fundamentals of web development using the MERN (MongoDB, Express.js, React.js, Node.js) stack. By the end of this training, you'll have a strong foundation in building full-stack web applications.
 
@@ -7,25 +7,25 @@ Welcome to the Introduction to Web Development with MERN Stack training program!
 
 This project is structured into two main folders: backend and frontend.
 
-# Backend
+### Backend
 
 The backend folder contains all the server-side code for our application. Here, we utilize Node.js with Express.js framework to handle HTTP requests and interact with the database. MongoDB is used as our database management system.
 
-# Frontend
+### Frontend
 
 The frontend folder holds the client-side code of our application. We utilize React.js library to create dynamic user interfaces and manage the application's state.
 
 ## Workshop Schedule
 
-# Day 1: Setting Up the Environment and Backend Development
+### Day 1: Setting Up the Environment and Backend Development
 - Morning Session: Introduction to MERN Stack, setting up Node.js and MongoDB, initializing a new Express.js project.
 - Afternoon Session: Creating RESTful APIs with Express.js, integrating MongoDB with Mongoose, implementing CRUD (Create, Read, Update, Delete) operations.
 
-# Day 2: Frontend Development with React.js
+### Day 2: Frontend Development with React.js
 - Morning Session: Introduction to React.js, setting up a React project using create-react-app, understanding components and props.
 - Afternoon Session: Managing state with React hooks, handling user input and form submissions, consuming APIs in React.
 
-# Day 3: Full-Stack Development and CRUD Workshop
+### Day 3: Full-Stack Development and CRUD Workshop
 - Morning Session: Integrating frontend with backend, connecting React components to backend APIs, implementing user authentication.
 - Afternoon Session: Hands-on CRUD workshop - participants will work on a project implementing CRUD operations on both frontend and backend, with guidance from instructors.
 
