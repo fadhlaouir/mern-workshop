@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import UpdateWorkshopForm from "./UpdateWorkshopForm"; // Import the new component
 
 const WorkshopList = () => {
   const [workshops, setWorkshops] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [updateWorkshop, setUpdateWorkshop] = useState(null); // State to manage the workshop being updated
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
@@ -32,6 +34,14 @@ const WorkshopList = () => {
     }
   };
 
+  const handleUpdate = (workshop) => {
+    setUpdateWorkshop(workshop);
+  };
+
+  const handleCancelUpdate = () => {
+    setUpdateWorkshop(null);
+  };
+
   return (
     <div>
       <h1>Workshop Lists</h1>
@@ -39,6 +49,12 @@ const WorkshopList = () => {
         <p>Loading workshops...</p>
       ) : error ? (
         <p>{error}</p>
+      ) : updateWorkshop ? (
+        <UpdateWorkshopForm
+          workshop={updateWorkshop}
+          onCancel={handleCancelUpdate}
+          onUpdate={fetchData}
+        />
       ) : (
         <table>
           <thead>
@@ -46,7 +62,7 @@ const WorkshopList = () => {
               <th>Name</th>
               <th>Description</th>
               <th>Date</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -59,6 +75,7 @@ const WorkshopList = () => {
                   <button onClick={() => handleDelete(workshop._id)}>
                     Delete
                   </button>
+                  <button onClick={() => handleUpdate(workshop)}>Update</button>
                 </td>
               </tr>
             ))}
