@@ -120,23 +120,23 @@ const updateWorkshop = async (req, res) => {
 };
 
 /**
- * delete a workshop from the database and send it to the client side
- * @param {*} req request object from the client side
- * @param {*} res response object from the server side
+ * Delete a workshop from the database and send the response to the client side
+ * @param {*} req Request object from the client side
+ * @param {*} res Response object from the server side
  */
 const deleteWorkshop = async (req, res) => {
   try {
-    // get the id from the request parameters
+    // Get the id from the request parameters
     const id = req.params.id;
 
-    // find the workshop by id and delete it
-    const workshop = await Workshop.findById(id);
+    // Find the workshop by id and delete it
+    const workshop = await Workshop.findByIdAndDelete(id);
 
     if (!workshop) {
-      return res.status(404).json({ message: "Workshop not found" });
+      return res
+        .status(404)
+        .json({ status: "fail", message: "Workshop not found" });
     }
-
-    await workshop.remove();
 
     res.status(200).json({ status: "success", message: "Workshop deleted" });
   } catch (err) {
