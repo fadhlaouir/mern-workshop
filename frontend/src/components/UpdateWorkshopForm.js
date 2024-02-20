@@ -43,9 +43,9 @@ const UpdateWorkshopForm = ({ workshop, onCancel, onUpdate }) => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Update Workshop</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -53,6 +53,7 @@ const UpdateWorkshopForm = ({ workshop, onCancel, onUpdate }) => {
           placeholder="Enter name"
           value={updatedWorkshopData.name}
           onChange={handleChange}
+          className="form-input"
         />
         <br />
         <input
@@ -61,6 +62,7 @@ const UpdateWorkshopForm = ({ workshop, onCancel, onUpdate }) => {
           placeholder="Enter description"
           value={updatedWorkshopData.description}
           onChange={handleChange}
+          className="form-input"
         />
         <br />
         <input
@@ -68,10 +70,13 @@ const UpdateWorkshopForm = ({ workshop, onCancel, onUpdate }) => {
           name="date"
           value={updatedWorkshopData.date}
           onChange={handleChange}
+          className="form-input"
         />
         <br />
-        <button type="submit">Update</button>
-        <button type="button" onClick={onCancel}>
+        <button type="submit" className="form-button">
+          Update
+        </button>
+        <button type="button" onClick={onCancel} className="form-button">
           Cancel
         </button>
       </form>

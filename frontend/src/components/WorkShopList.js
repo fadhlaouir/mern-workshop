@@ -1,6 +1,7 @@
+// WorkshopList.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import UpdateWorkshopForm from "./UpdateWorkshopForm"; // Import the new component
+import UpdateWorkshopForm from "./UpdateWorkshopForm";
 
 const WorkshopList = () => {
   const [workshops, setWorkshops] = useState([]);
@@ -43,12 +44,12 @@ const WorkshopList = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Workshop Lists</h1>
       {loading ? (
         <p>Loading workshops...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error-message">{error}</p>
       ) : updateWorkshop ? (
         <UpdateWorkshopForm
           workshop={updateWorkshop}
@@ -56,7 +57,7 @@ const WorkshopList = () => {
           onUpdate={fetchData}
         />
       ) : (
-        <table>
+        <table className="workshop-table">
           <thead>
             <tr>
               <th>Name</th>
@@ -72,10 +73,18 @@ const WorkshopList = () => {
                 <td>{workshop.description}</td>
                 <td>{new Date(workshop.date).toDateString()}</td>
                 <td>
-                  <button onClick={() => handleDelete(workshop._id)}>
+                  <button
+                    onClick={() => handleDelete(workshop._id)}
+                    className="form-button"
+                  >
                     Delete
                   </button>
-                  <button onClick={() => handleUpdate(workshop)}>Update</button>
+                  <button
+                    onClick={() => handleUpdate(workshop)}
+                    className="form-button"
+                  >
+                    Update
+                  </button>
                 </td>
               </tr>
             ))}

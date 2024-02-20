@@ -40,9 +40,9 @@ const AddWorkshopForm = ({ onAdd }) => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Add Workshop</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,6 +50,7 @@ const AddWorkshopForm = ({ onAdd }) => {
           placeholder="Enter name"
           value={workshopData.name}
           onChange={handleChange}
+          className="form-input"
         />
         <br />
         <input
@@ -58,6 +59,7 @@ const AddWorkshopForm = ({ onAdd }) => {
           placeholder="Enter description"
           value={workshopData.description}
           onChange={handleChange}
+          className="form-input"
         />
         <br />
         <input
@@ -65,9 +67,12 @@ const AddWorkshopForm = ({ onAdd }) => {
           name="date"
           value={workshopData.date}
           onChange={handleChange}
+          className="form-input"
         />
         <br />
-        <button type="submit">Add</button>
+        <button type="submit" className="form-button">
+          Add
+        </button>
       </form>
     </div>
   );
