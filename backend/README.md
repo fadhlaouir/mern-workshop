@@ -24,7 +24,7 @@ Make sure to replace `<your-mongodb-uri>` with the URI for your MongoDB database
 Finally, start the application by running:
 
 ```
-npm start
+npm run develop
 ```
 
 The application should now be running on the specified port number. You can access it in your web browser by navigating to `http://localhost:<your-port-number>`.
@@ -33,7 +33,7 @@ The application should now be running on the specified port number. You can acce
 
 The following API endpoints are available:
 
-GET `/api/v1/workshops` - Get all workshops
+GET `/api/v1/workshop` - Get all workshops
 
 GET `/api/v1/workshop/:id` - Get a workshop by ID
 
@@ -57,4 +57,4 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 ## Acknowledgments
 
-This workshop was created to help developers learn how to build a CRUD application using MongoDB, Express, and Node.js. Special thanks to the workshop organizers and instructors for their guidance and support.
+This workshop was created to help ISET KAIROUAN Students learn how to build a CRUD application using MongoDB, Express, and Node.js. 
