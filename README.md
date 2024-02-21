@@ -40,7 +40,5 @@ In the CRUD workshop, participants will work on a mini-project where they will b
 - Frontend Integration: Create React components for displaying tasks, creating new tasks, updating task details, and deleting tasks. Connect these components to the backend APIs.
 - User Authentication (Optional): Implement user authentication using JWT (JSON Web Tokens) to secure the CRUD operations.
 
-Participants will be provided with starter code and step-by-step instructions for each task. Instructors will be available to provide guidance and assistance throughout the workshop.
-
 ## Conclusion
 We hope you find this three-day training program valuable and enriching. By the end of this workshop, you'll have gained practical experience in building full-stack web applications with the MERN stack and be ready to take your web development skills to the next level. Enjoy the journey of learning and creating!
