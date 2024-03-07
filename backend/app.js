@@ -60,10 +60,4 @@ mongoose
 const workshopRoutes = require("./src/routes/WorkshopRoutes");
 app.use("/api/v1/", workshopRoutes); // Use the workshop routes with the base URL /api/v1/.
 
-// Port Config
-const port = process.env.PORT || 5000;
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}.`);
-});
+module.exports = app;

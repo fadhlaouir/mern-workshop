@@ -7,8 +7,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "develop": "nodemon server.js"
+    "start": "NODE_ENV=production && node index.js",
+    "develop": "SET NODE_ENV=development&& nodemon index.js"
   },
   "keywords": [],
   "dependencies": {
