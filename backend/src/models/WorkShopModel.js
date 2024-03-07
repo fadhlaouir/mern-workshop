@@ -1,23 +1,23 @@
 /* -------------------------------------------------------------------------- */
-/*                                 Dependecies                                */
+/*                                 Dependencies                              */
 /* -------------------------------------------------------------------------- */
+
 // Packages
-// mongoose is a package that allows us to interact with MongoDB
 const mongoose = require("mongoose");
 
-// schema is a method of mongoose that allows us to create a schema
-const Schema = mongoose.Schema;
-
 /* -------------------------------------------------------------------------- */
-/*                               Workshop Schema                              */
+/*                              Workshop Schema                              */
 /* -------------------------------------------------------------------------- */
 
 /**
- * @name : workshopSchema
- * @description : the schema of the workshop model
- * @fields : { name, description, date } the name, description and date of the workshop
+ * @name workshopSchema
+ * @description Schema for the workshop model
+ * @type {object}
+ * @property {string} name - The name of the workshop.
+ * @property {string} description - The description of the workshop.
+ * @property {Date} date - The date of the workshop.
  */
-const workshopSchema = new Schema({
+const workshopSchema = new mongoose.Schema({
   name: String,
   description: String,
   date: Date,

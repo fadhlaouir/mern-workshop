@@ -1,18 +1,19 @@
 /* -------------------------------------------------------------------------- */
-/*                                Dependencies                                */
+/*                                Dependencies                              */
 /* -------------------------------------------------------------------------- */
 
 // Models
 const Workshop = require("../models/workshopModel");
 
 /* -------------------------------------------------------------------------- */
-/*                             WorkShop Contorller                            */
+/*                             Workshop Controller                           */
 /* -------------------------------------------------------------------------- */
 
 /**
- * get all workshops from the database and send it to the client side
- * @param {*} req  request object from the client side
- * @param {*} res  response object from the server side
+ * Get all workshops from the database and send them to the client.
+ * @param {Object} req - Request object from the client.
+ * @param {Object} res - Response object from the server.
+ * @returns {Object} - JSON response with workshops data.
  */
 const getAllWorkshops = async (req, res) => {
   try {
@@ -21,136 +22,135 @@ const getAllWorkshops = async (req, res) => {
     res.status(200).json({
       status: "success",
       results: workshops.length,
-      data: {
-        workshops,
-      },
+      data: { workshops },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: "fail",
-      message: err.message || "Some error occurred while retrieving workshops.",
+      message: err.message || "Error retrieving workshops.",
     });
   }
 };
 
 /**
- * create a new workshop and save it to the database and send it to the client side
- * @param {*} req request object from the client side
- * @param {*} res response object from the server side
+ * Create a new workshop and save it to the database.
+ * @param {Object} req - Request object from the client.
+ * @param {Object} res - Response object from the server.
+ * @returns {Object} - JSON response with created workshop data.
  */
 const createWorkshop = async (req, res) => {
-  const workshop = new Workshop({
-    name: req.body.name,
-    description: req.body.description,
-    date: req.body.date,
-  });
-
-  await workshop
-    .save()
-    .then((data) => {
-      succuess: true;
-      message: "Workshop created successfully";
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Workshop.",
-      });
+  try {
+    const workshop = new Workshop({
+      name: req.body.name,
+      description: req.body.description,
+      date: req.body.date,
     });
+
+    const savedWorkshop = await workshop.save();
+
+    res.status(201).json({
+      status: "success",
+      data: savedWorkshop,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "fail",
+      message: err.message || "Error creating workshop.",
+    });
+  }
 };
 
 /**
- * get a workshop from the database and send it to the client side
- * @param {*} req request object from the client side
- * @param {*} res response object from the server side
+ * Get a workshop by its ID from the database.
+ * @param {Object} req - Request object from the client.
+ * @param {Object} res - Response object from the server.
+ * @returns {Object} - JSON response with workshop data.
  */
 const getWorkshopById = async (req, res) => {
   try {
-    // get the id from the request parameters
-    const id = req.params.id;
+    const workshop = await Workshop.findById(req.params.id);
 
-    // find the workshop by id
-    const workshop = await Workshop.findById(id);
+    if (!workshop) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Workshop not found.",
+      });
+    }
 
     res.status(200).json({
       status: "success",
-      data: {
-        workshop,
-      },
+      data: { workshop },
     });
   } catch (err) {
-    res.status(404).json({
+    res.status(500).json({
       status: "fail",
-      message:
-        err.message || "Some error occurred while retrieving the workshop.",
+      message: err.message || "Error retrieving workshop.",
     });
   }
 };
 
 /**
- * update a workshop in the database and send it to the client side
- * @param {*} req request object from the client side
- * @param {*} res response object from the server side
+ * Update a workshop in the database.
+ * @param {Object} req - Request object from the client.
+ * @param {Object} res - Response object from the server.
+ * @returns {Object} - JSON response with updated workshop data.
  */
 const updateWorkshop = async (req, res) => {
   try {
-    // get the id from the request parameters
-    const id = req.params.id;
-
-    // find the workshop by id and update it
-    const workshop = await Workshop.findByIdAndUpdate(id, req.body, {
+    const workshop = await Workshop.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
 
-    res.status(200).json({
-      status: "success",
-      data: {
-        workshop,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: "fail",
-      message:
-        err.message || "Some error occurred while updating the workshop.",
-    });
-  }
-};
-
-/**
- * Delete a workshop from the database and send the response to the client side
- * @param {*} req Request object from the client side
- * @param {*} res Response object from the server side
- */
-const deleteWorkshop = async (req, res) => {
-  try {
-    // Get the id from the request parameters
-    const id = req.params.id;
-
-    // Find the workshop by id and delete it
-    const workshop = await Workshop.findByIdAndDelete(id);
-
     if (!workshop) {
-      return res
-        .status(404)
-        .json({ status: "fail", message: "Workshop not found" });
+      return res.status(404).json({
+        status: "fail",
+        message: "Workshop not found.",
+      });
     }
 
-    res.status(200).json({ status: "success", message: "Workshop deleted" });
+    res.status(200).json({
+      status: "success",
+      data: { workshop },
+    });
   } catch (err) {
     res.status(500).json({
       status: "fail",
-      message:
-        err.message || "Some error occurred while deleting the workshop.",
+      message: err.message || "Error updating workshop.",
     });
   }
 };
 
 /**
- * export all the functions to be used in the routes
+ * Delete a workshop from the database.
+ * @param {Object} req - Request object from the client.
+ * @param {Object} res - Response object from the server.
+ * @returns {Object} - JSON response with success message.
  */
+const deleteWorkshop = async (req, res) => {
+  try {
+    const workshop = await Workshop.findByIdAndDelete(req.params.id);
+
+    if (!workshop) {
+      return res.status(404).json({
+        status: "fail",
+        message: "Workshop not found.",
+      });
+    }
+
+    res.status(200).json({
+      status: "success",
+      message: "Workshop deleted.",
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: "fail",
+      message: err.message || "Error deleting workshop.",
+    });
+  }
+};
+
+// Export all the functions to be used in the routes
 module.exports = {
   getAllWorkshops,
   createWorkshop,

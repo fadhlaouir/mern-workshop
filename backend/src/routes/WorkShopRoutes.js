@@ -1,6 +1,7 @@
 /* -------------------------------------------------------------------------- */
-/*                                Dependencies                                */
+/*                                Dependencies                              */
 /* -------------------------------------------------------------------------- */
+
 // Packages
 const router = require("express").Router();
 
@@ -8,58 +9,65 @@ const router = require("express").Router();
 const workShopController = require("../controllers/WorkshopController");
 
 /* -------------------------------------------------------------------------- */
-/*                               WorkShop Route                               */
+/*                               Workshop Routes                              */
 /* -------------------------------------------------------------------------- */
 
 /**
- * @route : /api/v1/workshop
- * @method : POST (create)
- * @description : create a new workshop in the database and return the workshop
- * @access : public (no authentication required)
- * @body : { name, description, date} the name, description and date of the workshop
- * @return : { workshop } if the request is successful and the workshop is created in the database
- * @error : { error } if the request is not successful or if there is an error in the database
+ * @route POST /api/v1/workshop
+ * @method POST
+ * @description Create a new workshop in the database and return the workshop
+ * @access Public (no authentication required)
+ * @body {string} name - The name of the workshop.
+ * @body {string} description - The description of the workshop.
+ * @body {Date} date - The date of the workshop.
+ * @return {object} The created workshop if successful.
+ * @error {object} Error object if the request fails.
  */
 router.post("/workshop", workShopController.createWorkshop);
 
 /**
- * @route : /api/v1/workshops
- * @method : GET (read)
- * @description : get all the workshops in the database and return them
- * @access : public (no authentication required)
- * @return : { workshops } if the request is successful and the workshops are retrieved from the database
- * @error : { error } if the request is not successful or if there is an error in the database
+ * @route GET /api/v1/workshops
+ * @method GET
+ * @description Get all the workshops in the database and return them
+ * @access Public (no authentication required)
+ * @return {object[]} Array of workshops if successful.
+ * @error {object} Error object if the request fails.
  */
 router.get("/workshops", workShopController.getAllWorkshops);
 
 /**
- * @route : /api/v1/workshops/:id
- * @method : GET (read)
- * @description : get a specific workshop in the database and return it
- * @access : public (no authentication required)
- * @return : { workshop } if the request is successful and the workshop is retrieved from the database
- * @error : { error } if the request is not successful or if there is an error in the database
+ * @route GET /api/v1/workshops/:id
+ * @method GET
+ * @description Get a specific workshop in the database and return it
+ * @access Public (no authentication required)
+ * @param {string} id - The ID of the workshop to retrieve.
+ * @return {object} The requested workshop if successful.
+ * @error {object} Error object if the request fails.
  */
 router.get("/workshops/:id", workShopController.getWorkshopById);
 
 /**
- * @route : /api/v1/workshops/:id
- * @method : PUT (update)
- * @description : update a specific workshop in the database and return it
- * @access : public (no authentication required)
- * @body : { name, description, date} the name, description and date of the workshop
- * @return : { workshop } if the request is successful and the workshop is updated in the database
- * @error : { error } if the request is not successful or if there is an error in the database
+ * @route PUT /api/v1/workshops/:id
+ * @method PUT
+ * @description Update a specific workshop in the database and return it
+ * @access Public (no authentication required)
+ * @param {string} id - The ID of the workshop to update.
+ * @body {string} name - The name of the workshop.
+ * @body {string} description - The description of the workshop.
+ * @body {Date} date - The date of the workshop.
+ * @return {object} The updated workshop if successful.
+ * @error {object} Error object if the request fails.
  */
 router.put("/workshops/:id", workShopController.updateWorkshop);
 
 /**
- * @route : /api/v1/workshops/:id
- * @method : DELETE (delete)
- * @description : delete a specific workshop in the database
- * @access : public (no authentication required)
- * @return : { message } if the request is successful and the workshop is deleted from the database
- * @error : { error } if the request is not successful or if there is an error in the database
+ * @route DELETE /api/v1/workshops/:id
+ * @method DELETE
+ * @description Delete a specific workshop in the database
+ * @access Public (no authentication required)
+ * @param {string} id - The ID of the workshop to delete.
+ * @return {object} Success message if successful.
+ * @error {object} Error object if the request fails.
  */
 router.delete("/workshops/:id", workShopController.deleteWorkshop);
 
