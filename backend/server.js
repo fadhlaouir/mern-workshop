@@ -1,79 +1,69 @@
 /* -------------------------------------------------------------------------- */
-/*                                Dependencies                                */
+/*                                Dependencies                              */
 /* -------------------------------------------------------------------------- */
-// express is used to create the server
+
+// Express is used to create the server.
 const express = require("express");
 
-// mongoose is used to connect to the database
+// Mongoose is used to connect to the database.
 const mongoose = require("mongoose");
 
-// body-parser is used to parse the body of the request
+// Body-parser is used to parse the body of the request.
 const bodyParser = require("body-parser");
 
-// morgan is used to log the requests
+// Morgan is used to log the requests.
 const morgan = require("morgan");
 
-// cors is used to allow cross origin resource sharing
+// CORS is used to allow cross-origin resource sharing.
 const cors = require("cors");
 
-// dotenv is used to load environment variables from a .env file
+// Dotenv is used to load environment variables from a .env file.
 const dotenv = require("dotenv");
 
 /* -------------------------------------------------------------------------- */
-/*                                 app config                                 */
+/*                                 App Config                                 */
 /* -------------------------------------------------------------------------- */
-// load environment variables from a .env file
+
+// Load environment variables from a .env file.
 dotenv.config();
-// create the express server
+
+// Create the Express server.
 const app = express();
 
 // Middleware
-app.use(morgan("dev")); // log requests to the console for development purposes
-app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded requests to the body of the request object as req.body
-app.use(bodyParser.json()); // parse application/json requests to the body of the request object as req.body (json format)
-app.use(cors()); // allow cross origin resource sharing for all routes and origins
+app.use(morgan("dev")); // Log requests to the console for development purposes.
+app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded requests to the body of the request object as req.body.
+app.use(bodyParser.json()); // Parse application/json requests to the body of the request object as req.body (JSON format).
+app.use(cors()); // Allow cross-origin resource sharing for all routes and origins.
 
-// db config
+// DB Config
 const MONGO_URI = process.env.MONGO_URI;
 
-/**
- * mongoose config:
- * @strictQuery : false to allow for partial search queries to be sent to the database and return results that match the query string
- * @MONGO_URI : the connection string to the database
- * @useNewUrlParser : to use the new url parser
- * @useUnifiedTopology : to use the new topology engine
- * @then : to log a success message if the connection is successful
- * @catch : to log an error message if the connection is not successful
- * @see https://mongoosejs.com/docs/guide.html#strict
- */
-mongoose.set("strictQuery", false); // allow for partial search queries to be sent to the database and return results that match the query string
-mongoose.connect(MONGO_URI).then(
-  () => {
-    console.log("Database connected successfully ");
-  },
-  (error) => {
-    console.log("Could not connect to database : " + error);
-  }
-);
+// Mongoose Config
+mongoose.set("strictQuery", false); // Allow for partial search queries to be sent to the database and return results that match the query string.
+
+// Connect to MongoDB
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Database connected successfully.");
+  })
+  .catch((error) => {
+    console.error("Could not connect to database:", error);
+  });
 
 /* -------------------------------------------------------------------------- */
 /*                                   Routes                                   */
 /* -------------------------------------------------------------------------- */
-/**
- * @workshopRoutes : the routes for the workshop api
- * @app.use : to use the routes
- * @/api/v1/ : the base url for the api
- */
-const workshopRoutes = require("./src/routes/WorkshopRoutes");
-app.use("/api/v1/", workshopRoutes);
 
-/**
- * port config: to set the port for the server
- */
+// Workshop Routes
+const workshopRoutes = require("./src/routes/WorkshopRoutes");
+app.use("/api/v1/", workshopRoutes); // Use the workshop routes with the base URL /api/v1/.
+
+// Port Config
 const port = process.env.PORT || 5000;
-/**
- * @app.listen : to start the server
- * @port : the port to listen on
- * @console.log : to log a message to the console
- */
-app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}.`);
+});
