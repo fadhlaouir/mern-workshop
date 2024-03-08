@@ -58,6 +58,6 @@ mongoose
 
 // Workshop Routes
 const workshopRoutes = require("./src/routes/WorkshopRoutes");
-app.use("/api/v1/", workshopRoutes); // Use the workshop routes with the base URL /api/v1/.
+app.use("/api/v1", workshopRoutes); // Use the workshop routes with the base URL /api/v1/.
 
 module.exports = app;

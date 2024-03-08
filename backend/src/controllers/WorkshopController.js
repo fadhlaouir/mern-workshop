@@ -68,7 +68,8 @@ const createWorkshop = async (req, res) => {
  */
 const getWorkshopById = async (req, res) => {
   try {
-    const workshop = await Workshop.findById(req.params.id);
+    const { id } = req.params;
+    const workshop = await Workshop.findById(id);
 
     if (!workshop) {
       return res.status(404).json({
@@ -97,7 +98,8 @@ const getWorkshopById = async (req, res) => {
  */
 const updateWorkshop = async (req, res) => {
   try {
-    const workshop = await Workshop.findByIdAndUpdate(req.params.id, req.body, {
+    const { id } = req.params;
+    const workshop = await Workshop.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -129,7 +131,8 @@ const updateWorkshop = async (req, res) => {
  */
 const deleteWorkshop = async (req, res) => {
   try {
-    const workshop = await Workshop.findByIdAndDelete(req.params.id);
+    const { id } = req.params;
+    const workshop = await Workshop.findByIdAndDelete(id);
 
     if (!workshop) {
       return res.status(404).json({
