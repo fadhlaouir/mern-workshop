@@ -13,7 +13,7 @@ The backend folder contains all the server-side code for our application. Here, 
 
 ### Frontend
 
-The frontend folder holds the client-side code of our application. We utilize React.js library to create dynamic user interfaces and manage the application's state.
+The frontend folder holds the client-side code of our application. We utilize React.js library to create dynamic user interfaces and manage the application's state. Before starting it, copy `frontend/.env.example` to `frontend/.env`: it points the app at the local API.
 
 ## Workshop Schedule
 
