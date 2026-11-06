@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "author": "@Raed Fadhlaoui <raed.fadhlaoui@hotmail.com>",
   "description": "This project was created for the purpose of the workshop of three days in the context of the training of the web development for the students of @ISET Kairouan, @ISET Nabeul...",
-  "license": "ISC",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
